@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+  Egészítsd ki a ház struktúrát úgy, hogy minden háznak legyen
+  1. Ára
+  2. És egy olyan tulajdonsága, ami eltárolja, hogy eladó-e a ház
+
+  A tulajdonost egészítsd ki úgy, hogy legyen pénze
+*/
+
+const house1 = {
+        address: "Kossuth 1",
+        owner: {
+            firstName: "Kiss",
+            lastName: "Lajos",
+            currency: 10
+        },
+        previousOwners: 
+            [
+                {
+                    firstName: "Kovacs",
+                    lastName: "Laszlo",
+                }
+            ],
+        price: 15,
+        forSale: true    
+    }
+    const house2 = {
+        address: "Kossuth 2",
+        owner: {
+            firstName: "Kiss",
+            lastName: "Evelin",
+            currency: 30
+        },
+        previousOwners: 
+            [
+                {
+                    firstName: "Kovacs",
+                    lastName: "Bela",
+                },
+                {
+                    firstName: "Dongo",
+                    lastName: "Arpad",
+                }
+            ],
+        price: 25,
+        forSale: false    
+    }
+    const house3 = {
+        address: "Kossuth 3",
+        owner: {
+            firstName: "Lakatos",
+            lastName: "Adrian",
+            currency: 20
+        },
+        previousOwners: [],
+        price: 20,
+        forSale: true
+    }
+
+    const neighborhood = [house1, house2, house3]
+
+//     A vásárlás függvényt egészítsd ki úgy, hogy
+//   1. Vizsgálja meg, hogy a megvásárolni kívánt ház eladó-e
+//   2. Ha igen, hajtsa végre a vásárlást úgy, hogy az új tulajtól levonja a pénzt és a réginek odaadja
+//   3. Ha nem eladó, írjon ki egy üzenetet
+//   4. Ha nincs elég pénze akkor is írjon ki egy üzenetet
+
+    function buyHouse(neighborhood, address, newOwner, newOwnerCurrency) {
+        for (let i = 0; i < neighborhood.length; i++) {
+            let house = neighborhood[i];
+            if (address === house.address) {
+                if (house.forSale) {
+                    if ((newOwnerCurrency) >= house.price ) {
+                        newOwnerCurrency -= house.price
+                        house.owner.currency += house.price
+                        house.previousOwners.push(house.owner)
+                        house.owner = newOwner
+                        console.log(house)
+
+                        return
+                    } else {
+                        console.log("Brokie")
+                        return
+                    }
+                } else {
+                    console.log("This house is not for sale")
+                    return
+                }
+            }
+        }   
+        console.log("We do not have this address in our system")
+    }
+
+    </script>
+</body>
+</html>
